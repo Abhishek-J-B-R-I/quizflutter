@@ -21,8 +21,20 @@ class qfa extends StatefulWidget {
 }
 
 class _qfaState extends State<qfa> {
+  List<Icon> score=[
+    /*Icon(Icons.check,
+      color: Colors.green,
+      //TODO: create icon for wrong or cross
+    ),
+    Icon(Icons.check,
+      color: Colors.green,
+      //TODO: create icon for wrong or cross
+    ),*/
+  ];
+
   @override
   Widget build(BuildContext context) {
+
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: Colors.black87,
@@ -49,6 +61,13 @@ class _qfaState extends State<qfa> {
                 child: TextButton(
                   
                   onPressed: () {
+                    setState(() {
+                      score.add(
+                        Icon(Icons.check,
+                        color: Colors.green,
+                        )
+                      );
+                    });
                     print(' i am True');
                   },
                   child: Text('True',style: TextStyle(
@@ -72,7 +91,14 @@ class _qfaState extends State<qfa> {
                 child: TextButton(
 
                   onPressed: () {
-                    print(' i am False');
+                    setState(() {
+                      score.add(
+                        Icon(Icons.close,
+                        color: Colors.red,
+                        )
+                      );
+                      print('i clicked');
+                    });
                   },
                   child: Text('False',style: TextStyle(
                     fontSize: 20,
@@ -85,7 +111,13 @@ class _qfaState extends State<qfa> {
 
                 ),
               ),
-            )
+            ),
+
+            Row(
+              children: score,
+            ),
+
+
           ],
         ),
       ),
