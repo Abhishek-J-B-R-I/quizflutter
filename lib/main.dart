@@ -31,7 +31,17 @@ class _qfaState extends State<qfa> {
       //TODO: create icon for wrong or cross
     ),*/
   ];
+  List<String> questions=[
 
+    'In my Laptop Linux Mint Xfce work fast?',
+    'In my Laptop Linux Mint i used for programming?',
+    'In my Laptop i used windows mostly?',
+  ];
+
+  int i=0;
+  String tquest(int i ){
+    return questions[i];
+  }
   @override
   Widget build(BuildContext context) {
 
@@ -47,8 +57,8 @@ class _qfaState extends State<qfa> {
             ),
             Center(
                 child: Text(
-              'I am Question',
-              style: TextStyle(fontSize: height / 15, color: Colors.white),
+              tquest(i),
+              style: TextStyle(fontSize: height / 20, color: Colors.white),
             )),
             SizedBox(
               height: height/3,
@@ -67,6 +77,11 @@ class _qfaState extends State<qfa> {
                         color: Colors.green,
                         )
                       );
+                      i++;
+                      if(i>2){
+                        i=0;
+                      }
+                      tquest(i);
                     });
                     print(' i am True');
                   },
