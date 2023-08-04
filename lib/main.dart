@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'classusing.dart';
+import 'quizbrain.dart';
 
 void main() {
   runApp(quizflutterapp());
@@ -39,12 +40,9 @@ class _qfaState extends State<qfa> {
     'In my Laptop i used windows mostly?',
   ];
   List<bool> answer = [true, true, false];*/
-  List<QuestionBank> qtnanstgr = [
-    QuestionBank(q: 'In my Laptop Linux Mint Xfce work fast?', a: true),
-    QuestionBank(q: 'In my Laptop Linux Mint i used for programming?', a: true),
-    QuestionBank(q: 'In my Laptop i used windows mostly?', a: false)
-  ];
-  int i = 0;
+
+
+  QuizBrain quizbrain=QuizBrain();
   /*
   String tquest(int i ){
      return questions[i];
@@ -63,7 +61,7 @@ class _qfaState extends State<qfa> {
             ),
             Center(
                 child: Text(
-              qtnanstgr[i].allquestions,
+              quizbrain.GetQuestion(),
               style: TextStyle(fontSize: height / 27, color: Colors.white),
             )),
             SizedBox(
@@ -79,18 +77,16 @@ class _qfaState extends State<qfa> {
                         Icons.check,
                         color: Colors.green,
                       ));
-                      bool answerr = qtnanstgr[i].allanswer;
+                      bool answerr = quizbrain.GetAnswer();
                       if (answerr == true) {
                         print('you won');
                       } else {
                         print('you lose');
                       }
 
-                      i++;
-                      if (i > 2) {
-                        i = 0;
-                      }
-                      qtnanstgr[i].allquestions;
+                      quizbrain.NextQuestion();
+
+                      quizbrain.GetQuestion();
                       //tquest(i);
                     });
                     print(' i am True');
@@ -119,18 +115,16 @@ class _qfaState extends State<qfa> {
                         Icons.close,
                         color: Colors.red,
                       ));
-                      bool answeri = qtnanstgr[i].allanswer;
+                      bool answeri = quizbrain.GetAnswer();
                       if (answeri == false) {
                         print('you won');
                       } else {
                         print('you lose');
                       }
 
-                      i++;
-                      if (i > 2) {
-                        i = 0;
-                      }
-                      qtnanstgr[i].allanswer;
+                      quizbrain.NextQuestion();
+
+                      quizbrain.GetAnswer();
                       print('i clicked');
                     });
                   },
