@@ -1,8 +1,7 @@
-
-
 import 'package:flutter/material.dart';
 import 'classusing.dart';
 import 'quizbrain.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 void main() {
   runApp(quizflutterapp());
@@ -44,31 +43,47 @@ class _qfaState extends State<qfa> {
   List<bool> answer = [true, true, false];*/
 
   QuizBrain quizbrain = QuizBrain();
-  void checkanswer(bool attemp){
-    setState(() {
-      bool answerr = quizbrain.GetAnswer();
-      if (attemp == answerr) {
-        print('you won');
-        score.add(Icon(
-          Icons.check,
-          color: Colors.green,
-        ));
-      } else {
-        print('you lose');
-        score.add(Icon(
-          Icons.close,
-          color: Colors.red,
-        ));
-      }
-      //checkanswer(true);
-      quizbrain.NextQuestion();
 
-      quizbrain.GetQuestion();
+  void checkanswer(bool attemp) {
+    setState(() {
+      if (quizbrain.isFinished() == true) {
+        print('alert');
+        Alert(
+                context: context,
+                type: AlertType.success,
+                title: 'Quiz Finished',
+                desc: 'Congratulations you finish all questions',
+
+        )
+
+
+            .show();
+        quizbrain.reset();
+        score=[];
+      } else {
+        bool answerr = quizbrain.GetAnswer();
+        if (attemp == answerr) {
+          print('you won');
+          score.add(Icon(
+            Icons.check,
+            color: Colors.green,
+          ));
+        } else {
+          print('you lose');
+          score.add(Icon(
+            Icons.close,
+            color: Colors.red,
+          ));
+        }
+        //checkanswer(true);
+        quizbrain.NextQuestion();
+        print(quizbrain.isFinished());
+        quizbrain.GetQuestion();
+      }
       //tquest(i);
     });
-
-
   }
+
   /*
   String tquest(int i ){
      return questions[i];
@@ -99,7 +114,6 @@ class _qfaState extends State<qfa> {
                 child: TextButton(
                   onPressed: () {
                     checkanswer(true);
-                    print(' i am True');
                   },
                   child: Text(
                     'True',

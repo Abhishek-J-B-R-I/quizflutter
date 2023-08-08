@@ -14,6 +14,8 @@ class QuizBrain{
    }
  }
 
+
+
 String GetQuestion(){
 
   return _qtnanstgr[_i].allquestions;
@@ -21,6 +23,23 @@ String GetQuestion(){
 
 bool GetAnswer(){
   return _qtnanstgr[_i].allanswer;
+}
+bool isFinished(){
+   if(_i>=_qtnanstgr.length-1){
+
+     return true;
+   }
+   else{
+     return false;
+   }
+}
+
+void reset(){
+   /*if(isFinished==true){
+     _i=0;
+   }*/
+  //TODO: FIND OUT WHY THIS COMMENT CODE IS RUN WORKING CORRECTLY
+  _i=0;
 }
 
 }
