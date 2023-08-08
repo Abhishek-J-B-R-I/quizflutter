@@ -1,3 +1,5 @@
+
+
 import 'package:flutter/material.dart';
 import 'classusing.dart';
 import 'quizbrain.dart';
@@ -42,6 +44,31 @@ class _qfaState extends State<qfa> {
   List<bool> answer = [true, true, false];*/
 
   QuizBrain quizbrain = QuizBrain();
+  void checkanswer(bool attemp){
+    setState(() {
+      bool answerr = quizbrain.GetAnswer();
+      if (attemp == answerr) {
+        print('you won');
+        score.add(Icon(
+          Icons.check,
+          color: Colors.green,
+        ));
+      } else {
+        print('you lose');
+        score.add(Icon(
+          Icons.close,
+          color: Colors.red,
+        ));
+      }
+      //checkanswer(true);
+      quizbrain.NextQuestion();
+
+      quizbrain.GetQuestion();
+      //tquest(i);
+    });
+
+
+  }
   /*
   String tquest(int i ){
      return questions[i];
@@ -71,27 +98,7 @@ class _qfaState extends State<qfa> {
                 padding: EdgeInsets.all(15),
                 child: TextButton(
                   onPressed: () {
-                    setState(() {
-                      bool answerr = quizbrain.GetAnswer();
-                      if (answerr == true) {
-                        print('you won');
-                        score.add(Icon(
-                          Icons.check,
-                          color: Colors.green,
-                        ));
-                      } else {
-                        print('you lose');
-                        score.add(Icon(
-                          Icons.close,
-                          color: Colors.red,
-                        ));
-                      }
-
-                      quizbrain.NextQuestion();
-
-                      quizbrain.GetQuestion();
-                      //tquest(i);
-                    });
+                    checkanswer(true);
                     print(' i am True');
                   },
                   child: Text(
@@ -113,29 +120,7 @@ class _qfaState extends State<qfa> {
                 padding: EdgeInsets.all(15),
                 child: TextButton(
                   onPressed: () {
-                    setState(() {
-                      bool answeri = quizbrain.GetAnswer();
-                      if (answeri == false) {
-                        print('you won');
-                        score.add(
-                          Icon(
-                            Icons.check,
-                            color: Colors.green,
-                          ),
-                        );
-                      } else {
-                        print('you lose');
-                        score.add(Icon(
-                          Icons.close,
-                          color: Colors.red,
-                        ));
-                      }
-//8004240994
-                      quizbrain.NextQuestion();
-
-                      quizbrain.GetAnswer();
-                      print('i clicked');
-                    });
+                    checkanswer(false);
                   },
                   child: Text(
                     'False',
