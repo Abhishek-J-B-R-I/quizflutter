@@ -41,8 +41,7 @@ class _qfaState extends State<qfa> {
   ];
   List<bool> answer = [true, true, false];*/
 
-
-  QuizBrain quizbrain=QuizBrain();
+  QuizBrain quizbrain = QuizBrain();
   /*
   String tquest(int i ){
      return questions[i];
@@ -73,15 +72,19 @@ class _qfaState extends State<qfa> {
                 child: TextButton(
                   onPressed: () {
                     setState(() {
-                      score.add(Icon(
-                        Icons.check,
-                        color: Colors.green,
-                      ));
                       bool answerr = quizbrain.GetAnswer();
                       if (answerr == true) {
                         print('you won');
+                        score.add(Icon(
+                          Icons.check,
+                          color: Colors.green,
+                        ));
                       } else {
                         print('you lose');
+                        score.add(Icon(
+                          Icons.close,
+                          color: Colors.red,
+                        ));
                       }
 
                       quizbrain.NextQuestion();
@@ -111,15 +114,21 @@ class _qfaState extends State<qfa> {
                 child: TextButton(
                   onPressed: () {
                     setState(() {
-                      score.add(Icon(
-                        Icons.close,
-                        color: Colors.red,
-                      ));
                       bool answeri = quizbrain.GetAnswer();
                       if (answeri == false) {
                         print('you won');
+                        score.add(
+                          Icon(
+                            Icons.check,
+                            color: Colors.green,
+                          ),
+                        );
                       } else {
                         print('you lose');
+                        score.add(Icon(
+                          Icons.close,
+                          color: Colors.red,
+                        ));
                       }
 //8004240994
                       quizbrain.NextQuestion();
